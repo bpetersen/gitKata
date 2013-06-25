@@ -70,7 +70,7 @@ We've now completed the first workflow.  I've been very pedantic about the steps
 Now that we have a firm understanding of how new features are implemented, let's go through the workflow to release new features into our master repository.  Vincent advises that we use a seperate branch to release, that way, the develop branch without being hindered by the release process.  With that in mind:
 + We may branch off from develop.  
 + We must merge back into develop AND master.  
-+ We should follow a naming convention for release branches, i.e. release-\*. Let's get started.
++ We should follow a naming convention for release branches, i.e. release-\*. 
 Let's get started.
 
 ###Steps
@@ -138,6 +138,7 @@ Merge made by the 'recursive' strategy.
 $ git branch -d hotfix-1.2.1
 Deleted branch hotfix-1.2.1 (was 98e0e53).
 ```
+
 ### Hotfix Workflow Summary
 This workflow is essentially the same as a release workflow except we're branching from master rather than develop.
 
