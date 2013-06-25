@@ -9,6 +9,7 @@ This kata contains 3 workflows - Branch/Merge, Release, and Hotfix.  We'll go th
 In the branch and merge portion of this kata, we will branch from the develop branch, make some code changes, and then merge back into develop.  Here are the steps to follow:
 ### Steps
 1. Clone the repository and ensure you are currently using the 'develop' branch. 
+
 ```bash
 $ git branch
   develop
@@ -16,6 +17,7 @@ $ git branch
 $ git checkout develop
 Switched to branch 'develop'
 ```
+
 2. Create a new branch so that we can implement a new feature.  Make sure you're branching from develop.
 ```bash
 $ git branch <teamname> develop
