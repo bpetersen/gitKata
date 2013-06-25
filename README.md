@@ -88,6 +88,26 @@ Switched to a new branch 'release-1.2'
 ```bash
 $ git commit -a -m "Included minor ommitance in proof."
 ```
+4. Now that we have a stable release branch, let's merge it back into master and tag the code so that we can refer to it later.
+```bash
+$ git checkout master
+Switched to branch 'master'
+$ git merge --no-ff release-1.2
+Merge made by the 'recursive' strategy.
+$ git tag 1.2
+```
+5. Before we delete the release branch, we should get the bug fixes in release merged back into the develop branch.
+```bash
+$ git checkout develop
+Switched to branch 'develop'
+$ git merge --no-ff release-1.2
+Merge made by the 'recursive' strategy.
+```
+6. Finally, after taking care of any merge conflicts, delete the release branch.
+```bash
+$ git branch -d release-1.2
+```
+
 
 ### Summary
 
