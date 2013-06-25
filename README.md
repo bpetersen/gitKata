@@ -1,5 +1,5 @@
 #gitKata
-The purpose of this kata is to learn some of the basic workflows outlined in Vincent Driessen's excellent blog post, [A Successful Git Branching and Merging Strategy](http://nvie.com/posts/a-successful-git-branching-model/).  I highly recommend you read it and print off the workflow by getting the .pdf at the end of his post.  Then print off the git cheatsheet in this repository.
+The purpose of this kata is to learn some of the basic workflows outlined in Vincent Driessen's excellent blog post, [A Successful Git Branching and Merging Strategy](http://nvie.com/posts/a-successful-git-branching-model/).  Before starting the kata, I recommend you read his post and print off the workflow .pdf at the end of his post. It might be helpful to print off the git cheatsheet in this repository. 
 
 ##Introduction
 
@@ -84,7 +84,7 @@ $ git checkout -b release-1.2 develop
 Switched to a new branch 'release-1.2'
 ```
 2. Make required changes to the release branch such as a critical bug fix.
-3. Commit changes.
+3. Commit changes. The -a switch will automatically include all modified and deleted files.
 ```bash
 $ git commit -a -m "Included minor ommitance in proof."
 ```
