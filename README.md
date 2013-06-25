@@ -3,11 +3,7 @@ The purpose of this kata is to learn some of the basic workflows outlined in Vin
 
 ##Introduction
 
-This kata contains 3 workflows - Branch/Merge, Release, and Hotfix.  We'll go through each of them.
-
-Before we get started, let's get our system set up.
-
-####TODO: Setup git, MinGW?, get local repository set up.
+This kata contains 3 workflows - Branch/Merge, Release, and Hotfix.  We'll go through each of them.  I've used a few shortcuts in the kata such as 'git checkout -b branchName parentBranch' to simultaneously create and switch to that branch and 'git commit -a -m "Fullmetal Alchemist: Brotherhood is the greatest anime of all time." to commit all modified and deleted files.  Use them at your discretion and know the commands behind them before using them blindly.
 
 ##Branch/Merge Workflow
 In the branch and merge portion of this kata, we will branch from the develop branch, make some code changes, and then merge back into develop.  Here are the steps to follow:
@@ -88,6 +84,61 @@ Switched to a new branch 'release-1.2'
 ```bash
 $ git commit -a -m "Included minor ommitance in proof."
 ```
+4. Now that we have a stable release branch, let's merge it back into master and tag the code so that we can refer to it later.
+```bash
+$ git checkout master
+Switched to branch 'master'
+$ git merge --no-ff release-1.2
+Merge made by the 'recursive' strategy.
+$ git tag 1.2
+```
+5. Before we delete the release branch, we should get the bug fixes in release merged back into the develop branch.
+```bash
+$ git checkout develop
+Switched to branch 'develop'
+$ git merge --no-ff release-1.2
+Merge made by the 'recursive' strategy.
+```
+6. Finally, after taking care of any merge conflicts, delete the release branch.
+```bash
+$ git branch -d release-1.2
+Deleted branch release-1.2 (was 971cb8b).
+```
 
-### Summary
+### Release Workflow Summary
+This release branching strategy that Vincent has laid out enables teams to harden the product independently.  That is, if we have 4 different teams working on features, they can all come together on the release branch to fix their bugs.  As they finish their work, they can merge their changes back into 'develop' and march on regardless of where the other teams are without polluting the release branch with new features.  
+
+## Hotfix Workflow
+What do we do if we have released a horrific bug into the wild and we need to patch released code?  We'll now talk about the final workflow that Vincent has shown in his post - the hotfix workflowto handle such a scenario.  You'll notice it's very similar to the release workflow, but with a little simplicity.
+
+### Steps
+1.  We'll be branching directly from 'master', so let's do that first.
+```bash
+$ git checkout -b hotfix-1.2.1 master
+Switched to a new branch 'hotfix-1.2.1'
+```
+2.  Now you can make any necessary changes to the code.  Vincent recommends when branching to update the versions for your files.
+```bash
+$ git commit -m "Fixed major omittance in proof."
+```
+3. Update master and tag the release.
+```bash
+$ git checkout master
+Switched to branch 'master'
+$ git merge --no-ff hotfix-1.2.1
+Merge made by the 'recursive' strategy.
+$ git tag -a 1.2.1
+```
+4. Finally, bring the changes into 'develop' (or release if there is currently a release branch) and delete the hotfix branch.
+```bash
+$ git checkout develop
+Switched to branch 'develop'
+$ git merge --no-ff hotfix-1.2.1
+Merge made by the 'recursive' strategy.
+$ git branch -d hotfix-1.2.1
+Deleted branch hotfix-1.2.1 (was 98e0e53).
+```
+### Hotfix Workflow Summary
+This workflow is essentially the same as a release workflow except we're branching from master rather than develop.
+
 
