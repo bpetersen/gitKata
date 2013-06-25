@@ -22,7 +22,9 @@ Switched to branch 'develop'
 $ git branch <teamname> develop
 $ git checkout <teamname> 
 Switched to branch '<teamname>'
+```
 Alternately, you can use a command to simultaneously create the branch and switch to it.
+```bash
 $ git checkout -b <teamname> develop
 ```
 3.  Create a new file and commit it to your repository.  
@@ -80,6 +82,7 @@ Let's get started.
 $ git checkout -b release-1.2 develop
 Switched to a new branch 'release-1.2'
 ```
+
 2. Make required changes to the release branch such as a critical bug fix.
 3. Commit changes. The -a switch will automatically include all modified and deleted files.
 ```bash
