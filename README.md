@@ -121,6 +121,7 @@ What do we do if we have released a horrific bug into the wild and we need to pa
 $ git checkout -b hotfix-1.2.1 master
 Switched to a new branch 'hotfix-1.2.1'
 ```
+
 2.  Now you can make any necessary changes to the code.  Vincent recommends when branching to update the versions for your files.
 ```bash
 $ git commit -m "Fixed major omittance in proof."
