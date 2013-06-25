@@ -106,8 +106,20 @@ Merge made by the 'recursive' strategy.
 6. Finally, after taking care of any merge conflicts, delete the release branch.
 ```bash
 $ git branch -d release-1.2
+Deleted branch release-1.2 (was 971cb8b).
 ```
 
+### Release Workflow Summary
+This release branching strategy that Vincent has laid out enables teams to harden the product independently.  That is, if we have 4 different teams working on features, they can all come together on the release branch to fix their bugs.  As they finish their work, they can merge their changes back into 'develop' and march on regardless of where the other teams are without polluting the release branch with new features.  
 
-### Summary
+## Hotfix Workflow
+What do we do if we have released a horrific bug into the wild and we need to patch released code?  We'll now talk about the final workflow that Vincent has shown in his post - the hotfix workflowto handle such a scenario.  You'll notice it's very similar to the release workflow, but with a little simplicity.
 
+### Steps
+1.  We'll be branching directly from 'master', so let's do that first.
+```bash
+$ git checkout -b hotfix-1.2.1 master
+Switched to a new branch 'hotfix-1.2.1'
+```
+2.  Now you can make any necessary changes to the code.  Vincent recommends when branching to update the versions for your files.
+3.   
