@@ -3,11 +3,7 @@ The purpose of this kata is to learn some of the basic workflows outlined in Vin
 
 ##Introduction
 
-This kata contains 3 workflows - Branch/Merge, Release, and Hotfix.  We'll go through each of them.
-
-Before we get started, let's get our system set up.
-
-####TODO: Setup git, MinGW?, get local repository set up.
+This kata contains 3 workflows - Branch/Merge, Release, and Hotfix.  We'll go through each of them.  I've used a few shortcuts in the kata such as 'git checkout -b branchName parentBranch' to simultaneously create and switch to that branch and 'git commit -a -m "Fullmetal Alchemist: Brotherhood is the greatest anime of all time." to commit all modified and deleted files.  Use them at your discretion and know the commands behind them before using them blindly.
 
 ##Branch/Merge Workflow
 In the branch and merge portion of this kata, we will branch from the develop branch, make some code changes, and then merge back into develop.  Here are the steps to follow:
@@ -122,4 +118,27 @@ $ git checkout -b hotfix-1.2.1 master
 Switched to a new branch 'hotfix-1.2.1'
 ```
 2.  Now you can make any necessary changes to the code.  Vincent recommends when branching to update the versions for your files.
-3.   
+```bash
+$ git commit -m "Fixed major omittance in proof."
+```
+3. Update master and tag the release.
+```bash
+$ git checkout master
+Switched to branch 'master'
+$ git merge --no-ff hotfix-1.2.1
+Merge made by the 'recursive' strategy.
+$ git tag -a 1.2.1
+```
+4. Finally, bring the changes into 'develop' (or release if there is currently a release branch) and delete the hotfix branch.
+```bash
+$ git checkout develop
+Switched to branch 'develop'
+$ git merge --no-ff hotfix-1.2.1
+Merge made by the 'recursive' strategy.
+$ git branch -d hotfix-1.2.1
+Deleted branch hotfix-1.2.1 (was 98e0e53).
+```
+### Hotfix Workflow Summary
+This workflow is essentially the same as a release workflow except we're branching from master rather than develop.
+
+
